@@ -1,7 +1,8 @@
-package org.zt.cachecontrol.utils;
+package org.grapeqin.cachecontrol.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 
 public abstract class Digests {
 

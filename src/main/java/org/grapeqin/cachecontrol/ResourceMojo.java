@@ -1,8 +1,4 @@
-package org.zt.cachecontrol;
-
-import java.io.File;
-import java.util.Date;
-import java.util.regex.Pattern;
+package org.grapeqin.cachecontrol;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -10,16 +6,21 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
-import org.zt.cachecontrol.utils.Digests;
+import org.grapeqin.cachecontrol.utils.Digests;
+
+import java.io.File;
+import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * 抽象类
  * 
  * 用于组装输入参数
  * 
- * @author Ternence
- * @date 2015年1月15日
+ * @author grapeqin
+ * @date 20190731
  */
+
 public abstract class ResourceMojo extends AbstractMojo {
 
     /**
@@ -77,10 +78,10 @@ public abstract class ResourceMojo extends AbstractMojo {
             Pattern.CASE_INSENSITIVE);
 
     public static Pattern JS_PATTERN = Pattern.compile(
-            "<script[\\s\\S]+?src\\s*=\\s*[\"|\'](.+\\.js.*?)[\"|\']{1}", Pattern.CASE_INSENSITIVE);
+            "<script[\\s\\S]+?src\\s*=\\s*[\"']?([^'\"<>]+\\.js)(\\?([^?=\\s]+=(<%=[^<%>]*%>|[^?=\\s'\"<>]+)+)+)?[\"']?[^<>]*>", Pattern.CASE_INSENSITIVE);
 
     public static Pattern CSS_PATTERN = Pattern.compile(
-            "<link[\\s\\S]+?href\\s*=\\s*[\"|\'](.+\\.css.*?)[\"|\']{1}", Pattern.CASE_INSENSITIVE);
+            "<link[\\s\\S]+?href\\s*=\\s*[\"\']?([^\'\"<>]+\\.css)(\\?([^?=\\s]+=(<%=[^<%>]*%>|[^?=\\s\'\"<>]+)+)+)?[\"\']?[^<>]*>", Pattern.CASE_INSENSITIVE);
 
 
 

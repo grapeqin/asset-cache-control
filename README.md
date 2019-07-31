@@ -1,7 +1,7 @@
-# asset-cache-control
-### 基于maven插件的缓存控制工具，通过修改资源url的请求参数，比如在url后面添加版本号或者时间戳的形式，来有效的防止浏览器缓存。
+# new features
 
-目前该功能可用于避免js、css、image 三种文件类型缓存
+- 支持一行中存在多个script语句时每个script标签都能添加去缓存参数
+- 覆盖script src属性中的缓存参数
 
 ### 用法：
 
@@ -11,9 +11,9 @@
 <build>
     <plugins>
         <plugin>
-            <groupId>org.zt</groupId>
+            <groupId>org.grapeqin</groupId>
             <artifactId>asset-cache-control</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
             <executions>
                 <execution>
                     <id>version</id>
@@ -49,30 +49,30 @@
 
 原始：
 ```html
-<script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script><script type="text/javascript" src="/javascripts/manifest.1.0.min.js"></script>
+<script type="text/javascript" src="/static/javascripts/js/timer.js?v=1.03"></script>
 ```
 
 执行后效果：
 
 版本号模式(在版本号不变更的情况下发版，需要刷新浏览器端缓存，所以版本号的规则是"${project.version}-5位随机值"，每次构建出的v参数值都是不一样的)
 ```html
-<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=1.1.0-2543d"></script>
-<link href="http://res.github.com/css/bootstrap.min.css?v=1.1.0-2543d" rel="stylesheet">
+<script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js?v=1.1.0-2543d"></script><script type="text/javascript" src="/javascripts/manifest.1.0.min.js?v=1.1.0-2543d"></script>
+<script type="text/javascript" src="/static/javascripts/js/timer.js?v=1.1.0-2543d"></script>
 ```
 
 时间戳模式
 ```html
-<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=14298124845"></script>
-<link href="http://res.github.com/css/bootstrap.min.css?v=14298124845" rel="stylesheet">
+<script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js?v=14298124845"></script><script type="text/javascript" src="/javascripts/manifest.1.0.min.js?v=14298124845"></script>
+<script type="text/javascript" src="/static/javascripts/js/timer.js?v=14298124845"></script>
 ```
 
 **示例：**
 ```xml
  <plugin>
-    <groupId>org.zt</groupId>
+    <groupId>org.grapeqin</groupId>
     <artifactId>asset-cache-control</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <executions>
         <execution>
             <id>version</id>

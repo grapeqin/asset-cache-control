@@ -1,25 +1,21 @@
-package org.zt.cachecontrol;
+package org.grapeqin.cachecontrol;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * 将resourcesDirs中指定的资源目录打成war包
  * 
  * @goal package
  * @phase prepare-package
- * @author Ternence
- * @date 2015年1月15日
+ * @author grapeqin
+ * @date 20190731
  */
 public class ResourcePackageMojo extends ResourceMojo {
 
